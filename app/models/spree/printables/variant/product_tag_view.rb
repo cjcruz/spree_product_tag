@@ -32,16 +32,12 @@ module Spree
     end
 
     def code 
-      code = printable.id.to_s.rjust(12, "0")
+      code = printable.sku.rjust(12, "0")
     end
 
     def barcode
       Barby::EAN13.new code
     end
-    
-    # def variant
-    #   @_variant ||= printable.order
-    # end   
 
     def after_save_actions
       increase_invoice_number! if use_sequential_number?
