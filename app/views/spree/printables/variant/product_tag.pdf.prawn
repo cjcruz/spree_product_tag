@@ -37,7 +37,10 @@ prawn_document(force_download: true,
     end
 
     pdf.translate(-25,0) do
-      pdf.text @doc.code, size: 8, style: :normal, rotate: -90, rotate_around: :center, align: :center, valign: :center
+      pdf.text "<font character_spacing='1.5'>#{@doc.code}</font>", 
+                inline_format: true, size: 7, style: :normal, 
+                rotate: -90, rotate_around: :center, 
+                align: :center, valign: :center
     end
   end
 
