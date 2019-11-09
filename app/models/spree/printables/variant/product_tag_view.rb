@@ -11,7 +11,8 @@ module Spree
 
     def_delegators :@printable,
                     :name,
-                    :display_price
+                    :display_price,
+                    :display_affiliate_price
 
     def number
     end
