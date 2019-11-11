@@ -1,5 +1,5 @@
 require 'barby'
-require 'barby/barcode/ean_13'
+require 'barby/barcode/code_128'
 require 'barby/outputter/prawn_outputter'
 
 module Spree
@@ -32,12 +32,20 @@ module Spree
     def total
     end
 
-    def code 
+    def code
       code = printable.sku.rjust(12, "0")
     end
 
+    def size
+      printable.option_values.joins(:option_type).where(spree_option_types: {name: ['talla-alfabetica', 'talla-numerica']}).first
+    end
+
+    def color
+      printable.option_values.joins(:option_type).where(spree_option_types: {name: 'color'}).first
+    end
+
     def barcode
-      Barby::EAN13.new code
+      Barby::Code128.new code
     end
 
     def after_save_actions
